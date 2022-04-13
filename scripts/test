@@ -1,0 +1,12 @@
+from bqplot import pyplot as plt
+import ipywidgets as widgets
+from src.imports import read_eye_data
+import src.plots as plots
+
+
+iTrial = 4
+x,y    = read_eye_data()
+
+fig = plt.figure(title="Eye traces")
+myplot = plt.plot(y[iTrial,:])
+plt.show()
