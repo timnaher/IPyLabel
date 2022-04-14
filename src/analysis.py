@@ -2,6 +2,19 @@ import uneye
 import numpy as np
 from src.imports import read_eye_data
 
+def get_sac_onsets_offsets(total_predictions):
+    ntrials,time = np.shape(total_predictions)
+
+    onsets  = []
+    offsets = []
+    for j in range(ntrials):
+        onsets.append( np.asarray( np.where( np.diff( total_predictions[j,:] ) ==  1)) + 1)
+        offsets.append(np.asarray( np.where( np.diff( total_predictions[j,:] ) == -1))    )
+    
+    return onsets, offsets
+
+
+
 def predict_possible_saccades(x,y,sampfreq,min_sacc_dur,min_sacc_dist):
     # Prediction
     sampfreq = 1000 #Hz
@@ -22,13 +35,4 @@ def predict_possible_saccades(x,y,sampfreq,min_sacc_dur,min_sacc_dist):
 
 
 
-def get_sac_onsets_offsets(total_predictions):
-    ntrials,time = np.shape(total_predictions)
-
-    onsets  = []
-    offsets = []
-    for j in range(ntrials):
-        onsets.append( np.asarray( np.where( np.diff( total_predictions[0,:] ) ==  1)) + 1)
-        offsets.append(np.asarray( np.where( np.diff( total_predictions[0,:] ) == -1))    )
-    return onsets, offsets
 

@@ -1,12 +1,42 @@
-from bqplot import pyplot as plt
+import bqplot as bq
 import ipywidgets as widgets
 from src.imports import read_eye_data
-import src.plots as plots
+from src.analysis import get_sac_onsets_offsets
+from src.analysis import predict_possible_saccades
+import numpy as np
+
+# init some values
+iTrial = 0
+
+# get the data
+x_matrix,y_matrix  = read_eye_data()
+ntrials, trialtime = np.shape(x_matrix)
+
+# predict possible saccades based on old weights
+total_predictions = predict_possible_saccades(x_matrix,y_matrix,sampfreq=1000,min_sacc_dur=10,min_sacc_dist = 30)
 
 
-iTrial = 4
-x,y    = read_eye_data()
+ # %%
+onsets,offsets = get_sac_onsets_offsets(total_predictions)
 
-fig = plt.figure(title="Eye traces")
-myplot = plt.plot(y[iTrial,:])
-plt.show()
+this_trial_onsets  = onsets[2][0]
+this_trial_offsets = offsets[2][0]
+patch_x_coords     = []
+patch_y_coords     = []
+
+for sac in range(len(this_trial_onsets)):
+    l1= [this_trial_onsets[sac],this_trial_onsets[sac],this_trial_offsets[sac],this_trial_offsets[sac]]
+    patch_x_coords.append(l1)
+    patch_y_coords.append([-1,1,1,-1])
+
+
+
+# %%
+array = np.arange(20,100)
+
+print(len(array))
+0.2*100
+
+
+
+# %%
