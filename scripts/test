@@ -35,7 +35,7 @@ for sac in range(len(this_trial_onsets)):
 array = np.arange(20,100)
 
 print(len(array))
-0.2*100
+
 
 
 
