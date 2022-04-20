@@ -18,7 +18,7 @@ def get_sac_onsets_offsets(total_predictions):
 def predict_possible_saccades(x,y,sampfreq,min_sacc_dur,min_sacc_dist):
     # Prediction
     sampfreq = 1000 #Hz
-    weights_name = 'weights_synthetic'
+    weights_name = 'weights_1+2+3'
     min_sacc_dur = 6 # in ms
     min_sacc_dist = 10 #in ms
 
