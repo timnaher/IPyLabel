@@ -1,11 +1,23 @@
 import os.path
 from csv import writer
+import csv
 
 import mat73
 import numpy as np
 import pandas as pd
 import uneye
 from numpy import genfromtxt
+
+
+def load_session_data(filename):
+    """loads a saves session file
+    Args:
+        filename (str): name of the file to be opened
+    """
+    with open (filename, 'rb') as fp:
+        data = pickle.load(fp)
+
+    return data
 
 
 def read_eye_data_mat():
@@ -19,26 +31,26 @@ def read_eye_data_mat():
     return eye_x, eye_y
 
 
-def read_eye_data():
-    """ reads the eye date from the csv file
+def read_eye_data(filename):
+    with open(filename, 'r') as file:
+        csvreader = csv.reader(file)
+        header = next(csvreader)
+        rows = []
+        for row in csvreader:
+            try:
+                rows.append([float(i) for i in row])
+            except:
+                pass
+    return rows[1:]
 
-    Returns:
-        x_data, y_data: 2 numpy arrays with eye x and y traces
-    """
-    # import X and Y eye traces
-    x_data = genfromtxt('data/X_train.csv', delimiter=',') # dimensions are trials x time
-    y_data = genfromtxt('data/Y_train.csv', delimiter=',')
-    return x_data, y_data
-
-
-def append_list_as_row(file_name, list_of_elem):
+def append_list_as_row(filename, list_of_elem):
     """ appends to an existinc csv file a new row of elements
 
     Args:
         file_name (string): the file name on which to append
         list_of_elem (list): the elements which to append as a new row
     """
-    with open(file_name, 'a+', encoding="utf-8", newline='') as write_obj:
+    with open(filename, 'a+', encoding="utf-8", newline='') as write_obj:
         # Create a writer object from csv module
         csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
