@@ -115,3 +115,15 @@ def predict_possible_saccades(x,y,sampfreq,min_sacc_dur,min_sacc_dist):
 
     prediction = model.predict(x,y)
     return prediction
+
+def count_labeled_trials(*ignore):
+    """ counts the 3 of rows int he already labeled csv file
+
+    Returns:
+        row_count (int): number of rows in csv file
+    """
+    with open('results/binary_labels.csv', 'r') as file:
+        csvreader = csv.reader(file)
+        row_count = len(list(csvreader))
+
+    return row_count
