@@ -8,3 +8,8 @@
 ` pip install -e . `
 
 3) label saccades
+
+
+### Usage
+1) move your eye data into IPyLabel/data. The files should be names X_train.csv and Y_train.csv with rows as trials and colums as time (default Fs = 1000)
+2) Either run the juptyter notebook /jupyer lab or just render the output with voila using `voila <path-to-notebook> --theme=dark` Dark theme works best for contrast
