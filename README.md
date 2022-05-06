@@ -1,3 +1,3 @@
 # saclabel
 
-![alt text](https://github.com/timnaher/saclabel/other/image.jpg?raw=true)
+![alt text](https://github.com/timnaher/saclabel/blob/main/other/screenshot.png)
