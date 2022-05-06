@@ -1,23 +1,15 @@
+import csv
 import os.path
 from csv import writer
-import csv
 
 import mat73
 import numpy as np
 import pandas as pd
-import uneye
 from numpy import genfromtxt
+import uneye
 
 
-def load_session_data(filename):
-    """loads a saves session file
-    Args:
-        filename (str): name of the file to be opened
-    """
-    with open (filename, 'rb') as fp:
-        data = pickle.load(fp)
 
-    return data
 
 
 def read_eye_data_mat():
@@ -25,16 +17,23 @@ def read_eye_data_mat():
 
     Returns:
         _type_: _description_
-    """    
+    """
     eye_x = mat73.loadmat('data/eyedata_x.mat')['eyedata_x']
     eye_y = mat73.loadmat('data/eyedata_y.mat')['eyedata_y']
     return eye_x, eye_y
 
 
 def read_eye_data(filename):
+    """reads the eye data
+
+    Args:
+        filename (str): name of file
+
+    Returns:
+        list: data in csv file
+    """
     with open(filename, 'r') as file:
         csvreader = csv.reader(file)
-        header = next(csvreader)
         rows = []
         for row in csvreader:
             try:

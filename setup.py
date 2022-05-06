@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='saclabel',
+    name='IPyLabel',
     packages=find_packages(),
 )
